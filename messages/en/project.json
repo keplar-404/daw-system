@@ -1,0 +1,45 @@
+{
+    "project": {
+        "new": "New Project",
+        "save": "Save Project",
+        "saveShortcut": "Ctrl+S",
+        "open": "Open Project",
+        "import": "Import Project",
+        "export": "Export Project",
+        "delete": "Delete Project",
+        "recent": "Recent Projects",
+        "noRecentProjects": "No recent projects",
+        "untitled": "Untitled Project",
+        "namePlaceholder": "Project name...",
+        "saved": "Project saved",
+        "saving": "Saving...",
+        "loading": "Loading...",
+        "dirty": "Unsaved changes",
+        "createdAt": "Created {date}",
+        "updatedAt": "Last saved {date}",
+        "deleteConfirm": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+        "importSuccess": "Project imported successfully",
+        "importError": "Failed to import project: {error}",
+        "exportSuccess": "Project exported",
+        "settings": {
+            "title": "Project Settings",
+            "tempo": "Tempo (BPM)",
+            "tempoMin": "20",
+            "tempoMax": "300",
+            "timeSignature": "Time Signature",
+            "key": "Key",
+            "scale": "Scale",
+            "sampleRate": "Sample Rate",
+            "bitDepth": "Bit Depth",
+            "lengthBars": "Length (Bars)"
+        }
+    },
+    "history": {
+        "undo": "Undo",
+        "redo": "Redo",
+        "undoShortcut": "Ctrl+Z",
+        "redoShortcut": "Ctrl+Shift+Z",
+        "noHistory": "Nothing to undo",
+        "noFuture": "Nothing to redo"
+    }
+}
