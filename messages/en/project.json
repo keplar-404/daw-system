@@ -41,5 +41,37 @@
         "redoShortcut": "Ctrl+Shift+Z",
         "noHistory": "Nothing to undo",
         "noFuture": "Nothing to redo"
+    },
+    "timeline": {
+        "addTrack": "Add Track",
+        "zoomIn": "Zoom In",
+        "zoomOut": "Zoom Out",
+        "resetZoom": "Reset Zoom",
+        "noProject": "No project loaded.",
+        "createProject": "Create New Project",
+        "trackCount": "{count} track",
+        "trackCountPlural": "{count} tracks",
+        "emptyState": "Create a project to start composing.",
+        "toolbar": "Timeline toolbar",
+        "canvas": "Timeline canvas",
+        "headers": "Track headers",
+        "mixer": "Mixer panel",
+        "collapseMixer": "Collapse mixer",
+        "expandMixer": "Expand mixer"
+    },
+    "track": {
+        "mute": "Mute {name}",
+        "unmute": "Unmute {name}",
+        "solo": "Solo {name}",
+        "unsolo": "Unsolo {name}",
+        "arm": "Arm {name} for recording",
+        "disarm": "Disarm {name}",
+        "volume": "Volume for {name}",
+        "types": {
+            "midi": "MIDI",
+            "audio": "AUDIO",
+            "bus": "BUS",
+            "master": "MASTER"
+        }
     }
 }

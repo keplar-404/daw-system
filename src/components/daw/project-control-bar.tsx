@@ -196,8 +196,7 @@ export function ProjectControlBar(): React.ReactElement {
 
   const handleNewProject = useCallback(() => {
     createProject("Untitled Project");
-    addTrack(createDefaultTrack("Track 1", 0, 0));
-  }, [createProject, addTrack]);
+  }, [createProject]);
 
   const handleSave = useCallback(() => {
     saveActiveProject();

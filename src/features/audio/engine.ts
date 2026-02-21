@@ -245,18 +245,35 @@ export function snapGridToToneTime(grid: SnapGrid): string {
 }
 
 /**
- * Disposes all Tone.js nodes and stops the transport. Call on workspace unmount.
+ * Returns the current playhead position in bars (e.g. 5.5 for middle of bar 5)
+ */
+export function engineGetPositionBars(): number {
+  if (!IS_BROWSER || !initialized || !Tone) return 0;
+  const sig = Tone.Transport.timeSignature;
+  const num = Array.isArray(sig) ? sig[0] : (sig as number);
+  return Tone.Transport.ticks / Tone.Transport.PPQ / num;
+}
+
+/**
+ * Tears down the audio engine entirely. Used for testing teardown.
  */
 export function engineDispose(): void {
-  if (!IS_BROWSER || !Tone) return;
-  beatSequence?.stop();
-  beatSequence?.dispose();
-  accentSynth?.dispose();
-  beatSynth?.dispose();
+  if (!IS_BROWSER || !initialized || !Tone) return;
+
+  if (beatSequence) {
+    beatSequence.stop();
+    beatSequence.dispose();
+    beatSequence = null;
+  }
+  if (accentSynth) {
+    accentSynth.dispose();
+    accentSynth = null;
+  }
+  if (beatSynth) {
+    beatSynth.dispose();
+    beatSynth = null;
+  }
   Tone.Transport.stop();
   Tone.Transport.cancel();
-  beatSequence = null;
-  accentSynth = null;
-  beatSynth = null;
   initialized = false;
 }

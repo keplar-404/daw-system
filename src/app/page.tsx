@@ -1,5 +1,11 @@
+"use client";
+
 import type React from "react";
-import { Workspace } from "@/features/workspace/Workspace";
+import dynamic from "next/dynamic";
+
+const Workspace = dynamic(() => import("@/features/workspace/workspace").then(m => m.Workspace), {
+  ssr: false,
+});
 
 /**
  * Main Landing / Workspace Page

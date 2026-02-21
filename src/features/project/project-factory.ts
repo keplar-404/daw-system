@@ -62,11 +62,7 @@ export function createDefaultTrack(name: string, order: number, colorIndex = 0):
  */
 export function createNewProject(name = "Untitled Project"): Project {
   const now = new Date().toISOString();
-  const defaultTracks: Track[] = [
-    createDefaultTrack("Track 1", 0, 0),
-    createDefaultTrack("Track 2", 1, 1),
-    createDefaultTrack("Track 3", 2, 2),
-  ];
+  const defaultTracks: Track[] = [];
 
   return {
     id: generateId(),
