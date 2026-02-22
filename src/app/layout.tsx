@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "@/styles/globals.css";
-import "@/styles/theme.css";
-import { ThemeProvider } from "./providers/theme-provider";
+
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,27 +15,41 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/**
- * Global Metadata
- */
 export const metadata: Metadata = {
-  title: "DAW AI - Professional Audio Workstation",
-  description: "A fast, immediate, Web-based Digital Audio Workstation.",
+  title: {
+    default: "daw-ai",
+    template: "%s | daw-ai",
+  },
+  description:
+    "AI-powered digital audio workstation — compose, produce, and master in the browser.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
+  ),
 };
 
-/**
- * Root Layout Component
- * @param children Reusable layout children component
- */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>): React.ReactElement {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
