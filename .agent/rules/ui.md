@@ -7,109 +7,39 @@ description: UI, Design System, Components, Accessibility & Layout
 
 ## Design System
 
-All UI must use the design tokens defined in `src/styles/theme.css` and the Tailwind config. **Never hardcode colors, spacing, border-radius, or font sizes.**
+We use **Tailwind CSS** and **shadcn/ui** for the design system.
 
-### Colors
-- Use CSS custom properties: `var(--color-surface)`, `var(--color-accent)`, etc.
-- Accent gradient only for primary CTA actions — never overuse
-- Never use raw Tailwind colors (e.g., `bg-blue-500`) — only design token aliases
+### Colors and Styling
+- Use Tailwind CSS utility classes for styling.
+- Use CSS custom properties defined in your global CSS for semantic colors (e.g., `bg-primary`, `text-muted-foreground`).
+- Never use inline styles unless computing dynamic layout pixel coordinates.
+- Maintain consistent spacing, primarily using Tailwind's 4-point spacing scale (e.g., `p-4`, `gap-2`).
 
-### Spacing Scale
-- Base unit: **8px** — all spacing must be a multiple of 8px
-- Use Tailwind spacing utilities that map to the 8px scale
-- No inconsistent padding; match surrounding context
-
-### Typography
-- Font family set in `layout.tsx` via Next.js font optimization
-- Font size, weight, and line-height from design tokens only
-
-### Glassmorphism (Controlled Use)
-Allowed only for: Panels, floating modals, Transport bar.
-
-```
-Allowed:   backdrop-blur-md, bg-white/5 to bg-white/10, border-white/10, subtle gradient overlays
-Forbidden: heavy blur stacking, neon shadows, glow effects, overlapping blur layers
-```
+### shadcn/ui Usage
+- Install shadcn/ui components when needed via the CLI or manual addition instead of building them from scratch.
+- Use the `cn` utility from `src/lib/utils.ts` (clsx + tailwind-merge) to combine classes gracefully.
+- Avoid modifying the base shadcn/ui components heavily; instead, create wrapper components.
 
 ---
 
 ## Component Rules
 
-### shadcn/ui Usage
-- Use shadcn/ui components for: Button, Toggle, Slider, Modal/Dialog, Input, Select, Tabs, Tooltip
-- **Check shadcn registry first** before building a custom component
-- If a component isn't in shadcn, build it manually but **match the shadcn design language** — use the same CSS variables so global theme changes cascade automatically
+### Structure
+- Presentational logic should be separated from business logic.
+- Keep components focused and small.
+- Extract complex custom hooks if the component's internal logic grows too large.
 
-### Custom DAW Components
-- Timeline, TrackHeader, Clip, Piano Roll, MixerChannel, AutomationLane — **built manually**, not with shadcn
-- These live in `src/components/daw/`
-- Must be reusable, isolated, receive props (not global state directly)
-- Avoid direct engine calls inside components — use store actions instead
-- Memoize with `React.memo` if the component is heavy or re-renders frequently
+### Icons
+- Use `lucide-react` for all icons ensuring consistency in stroke width and style.
 
-### Component Structure Pattern
-```tsx
-// 1. Imports (external libraries → internal modules → types)
-// 2. Types/interfaces for this component's props
-// 3. Constants local to this component
-// 4. The component function (named export, PascalCase)
-// 5. Sub-components or helpers (if small enough to colocate)
-```
+### Responsive Layout
+- Use Tailwind's `sm:`, `md:`, `lg:`, `xl:` prefixes to create a mobile-first responsive design.
+- The UI should work seamlessly from mobile screens up to wide desktops.
 
 ---
 
 ## Accessibility
-
-All interactive elements must be accessible:
-
-- Every interactive element has `aria-label` or visible text label
-- Keyboard navigation required — no mouse-only interactions
-- Focus states visible (use `:focus-visible` ring)
-- Color contrast ratio ≥ 4.5:1 for normal text, ≥ 3:1 for large text
-- Sliders and knobs controllable via arrow keys
-- Don't rely on color alone to convey information
-
----
-
-## DAW UX Priorities
-
-This is a **professional production tool** — not a marketing site. UX must prioritize:
-
-- **Speed** — actions feel instantaneous
-- **Precision** — sliders, nudge, snap all feel tight
-- **Clarity** — low visual noise, clear hierarchy
-- **Workflow efficiency** — common actions on keyboard shortcuts
-
-**Rules:**
-- No decorative animations or transitions during playback
-- Transport (play/stop/BPM) always visible, always accessible
-- Timeline is the primary focus — never obscure it
-- All controls must respond immediately (no debounce on primary actions)
-
----
-
-## Responsive Layout
-
-Breakpoints and layout behavior:
-
-| Breakpoint | Layout |
-|---|---|
-| Mobile | Vertical stacked; Mixer/Inspector in slide-up drawers; horizontal scroll timeline |
-| Tablet | Two-column; collapsible mixer |
-| Desktop | Full DAW: Timeline + Tracks + Mixer all visible |
-
-- Never break grid alignment
-- Never overflow the viewport without explicit scroll container
-- Touch interactions must work on tablet (pointer-coarse support)
-
----
-
-## Visual Consistency Checklist
-
-Before committing UI changes, verify:
-- [ ] No new hardcoded hex values, px values, or font-size values
-- [ ] No new inline styles (except dynamic pixel positions)
-- [ ] Consistent 8px spacing throughout
-- [ ] Glass effects only in permitted locations
-- [ ] Accent color not overused
-- [ ] Component passes keyboard navigation test
+- All interactive elements must be keyboard-focusable.
+- Use `aria-` labels for screen readers when visual labels are omitted.
+- Follow WCAG contrast guidelines for text.
+- Refer to `accessibility.md` for extended rules.

@@ -35,8 +35,3 @@ All interfaces must meet **WCAG 2.1 Level AA** at minimum.
 - Every input has a visible `<label>` (or `aria-label`).
 - Validation errors reference the input via `aria-describedby`.
 - Required fields marked with `aria-required="true"` and a visible indicator.
-
-## Testing
-
-- Run `axe-core` or `axe-playwright` in CI — zero violations allowed (Critical + Serious).
-- Manual keyboard navigation review before every release.

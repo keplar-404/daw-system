@@ -18,13 +18,18 @@ Use this to pull the visual design reference from the Stitch board for this proj
    - Colors → map to CSS custom properties in `src/styles/theme.css`
    - Typography → map to Tailwind config font settings
    - Spacing → verify alignment with 8px grid scale
-   - Component specs → use as reference when building custom DAW components
+   - Component specs → use as reference when building custom components
+   - Create the stich board on the current project. But make sure just don't copy paste design. Rather create the design but following the project structure effectively.
 
-4. **Do not blindly copy design values** — if a design value conflicts with the DAW UX rules (e.g., a spacing value not on the 8px scale), round to the nearest compliant value and note the deviation
+4. **Do not blindly copy design values** — always follow the project default theme system.
 
-5. **Update `src/styles/theme.css`** with any new or updated CSS custom properties derived from the design
+5. **Update `src/styles/theme.css`** if the design system is necessary. But as minimal as possible
 
-6. **Verify no regressions**
+7. **Must respect and follow the project theme principle**
+
+8. **Mobile first approach**
+
+9. **Verify no regressions**
    ```bash
    npx next build
    ```
